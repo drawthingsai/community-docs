@@ -7,7 +7,7 @@
 
 We're excited to share a 25-minute complete walkthrough of the Mac/OSX interface, updated for January 2024. This comprehensive video covers everything you need to know about navigating and utilizing the Mac interface efficiently.
 
-[Watch the Video on YouTube](https://www.youtube.com/watch?v=uJoGQA5oXRU)
+![Watch the Video on YouTube](https://www.youtube.com/watch?v=uJoGQA5oXRU)
 
 ### Video Timestamps:
 - [0:00](https://www.youtube.com/watch?v=uJoGQA5oXRU&t=0s) Machine Settings
