@@ -1,4 +1,4 @@
-# Drawthings Community Docs & Tutorials - Basic inpainting
+# Community Docs - Basic inpainting
 
 
 ## Basic inpainting & outpainting follow-along tutorial for Draw Things (Stable Diffusion on macOS) (Feb '24)

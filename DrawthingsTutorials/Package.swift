@@ -4,12 +4,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "CommunityDocs",
+    name: "DrawthingsTutorials",
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "CommunityDocs",
-            targets: ["CommunityDocs"]),
+            name: "DrawthingsTutorials",
+            targets: ["DrawthingsTutorials"]),
     ],
     dependencies: [
         // other dependencies
@@ -17,7 +17,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "CommunityDocs",
+            name: "DrawthingsTutorials",
             resources: [
                 .process("Resources/")
             ]
