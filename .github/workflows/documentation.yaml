@@ -1,0 +1,44 @@
+name: documentation
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install Swift dependencies
+        run: |
+          sudo apt-get install clang libicu-dev
+          wget https://download.swift.org/swift-5.9.1-release/ubuntu2004/swift-5.9.1-RELEASE/swift-5.9.1-RELEASE-ubuntu20.04.tar.gz
+          tar xzf swift-5.9.1-RELEASE-ubuntu20.04.tar.gz
+          echo "$(pwd)/swift-5.9.1-RELEASE-ubuntu20.04/usr/bin" >> $GITHUB_PATH
+
+
+      - name: Clean up documentation branch
+        run: |
+          git branch -D documentation || true
+          git checkout -b documentation
+
+      - name: Run docc
+        run: |
+          cd "${GITHUB_WORKSPACE}"
+          cd CommunityDocs
+          swift package --allow-writing-to-directory docs generate-documentation --target CommunityDocs --disable-indexing --transform-for-static-hosting --hosting-base-path / --output-path ../docs
+          echo '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=https://weiyanlin117.github.io/documentation/communitydocs">' > ../docs/index.html
+          
+
+      - name: Add and commit documentation
+        run: |
+          git config --global user.email "docbot@github.com"
+          git config --global user.name "docbot"
+          cd "${GITHUB_WORKSPACE}" && git add "docs/*" && git commit -m "Update docs."
+
+      - name: Push the new branch
+        run: |
+          cd "${GITHUB_WORKSPACE}" && git push --force origin documentation:documentation
+
