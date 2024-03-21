@@ -27,9 +27,8 @@ jobs:
       - name: Run docc
         run: |
           cd "${GITHUB_WORKSPACE}"
-          cd Drawthings/Sources/DrawThings
-          docc convert DrawThings.docc --index --transform-for-static-hosting --output-path ../../../docs
-          echo '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=https://drawthingsai.github.io/documentation/root">' > ../../../docs/index.html
+          docc convert DrawThings.docc --index --transform-for-static-hosting --output-path ./docs
+          echo '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=https://drawthingsai.github.io/documentation/root">' > ./docs/index.html
     
       - name: Add and commit documentation
         run: |
