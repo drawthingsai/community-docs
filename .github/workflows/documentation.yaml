@@ -3,9 +3,13 @@ on:
   push:
     branches:
       - main
+
+permissions:
+  contents: write
+
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
         with:
@@ -14,9 +18,9 @@ jobs:
       - name: Install Swift dependencies
         run: |
           sudo apt-get install clang libicu-dev
-          wget https://download.swift.org/swift-5.9.1-release/ubuntu2004/swift-5.9.1-RELEASE/swift-5.9.1-RELEASE-ubuntu20.04.tar.gz
-          tar xzf swift-5.9.1-RELEASE-ubuntu20.04.tar.gz
-          echo "$(pwd)/swift-5.9.1-RELEASE-ubuntu20.04/usr/bin" >> $GITHUB_PATH
+          wget https://download.swift.org/swift-5.10-release/ubuntu2204/swift-5.10-RELEASE/swift-5.10-RELEASE-ubuntu22.04.tar.gz
+          tar xzf swift-5.10-RELEASE-ubuntu22.04.tar.gz
+          echo "$(pwd)/swift-5.10-RELEASE-ubuntu22.04/usr/bin" >> $GITHUB_PATH
 
 
       - name: Clean up documentation branch
@@ -27,7 +31,7 @@ jobs:
       - name: Run docc
         run: |
           cd "${GITHUB_WORKSPACE}"
-          docc convert DrawThings.docc --index --transform-for-static-hosting --output-path ./docs
+          docc convert Documentation.docc --index --transform-for-static-hosting --output-path ./docs
           echo '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=https://drawthingsai.github.io/documentation/root">' > ./docs/index.html
     
       - name: Add and commit documentation
