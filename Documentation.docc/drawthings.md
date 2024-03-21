@@ -1,5 +1,5 @@
 # Draw Things
-Draw Things documetations and tutorials
+Documentation
 
 @Metadata {
    @TechnologyRoot
